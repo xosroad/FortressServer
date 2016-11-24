@@ -447,7 +447,7 @@ class Nav(object):
         Print prompt
         打印提示导航
         """
-        msg = """\n\033[1;32m###    欢迎使用Jumpserver开源跳板机系统   ### \033[0m
+        msg = """\n\033[1;32m###    欢迎使用OSRoad跳板机系统   ### \033[0m
 
         1) 输入 \033[32mID\033[0m 直接登录 或 输入\033[32m部分 IP,主机名,备注\033[0m 进行搜索登录(如果唯一).
         2) 输入 \033[32m/\033[0m + \033[32mIP, 主机名 or 备注 \033[0m搜索. 如: /ip
@@ -459,6 +459,8 @@ class Nav(object):
         8) 输入 \033[32mD/d\033[0m 批量下载文件.
         9) 输入 \033[32mH/h\033[0m 帮助.
         0) 输入 \033[32mQ/q\033[0m 退出.
+
+        注意，Mac下上传下载建议手工安装工具，教程可参考: http://www.cnblogs.com/dingdada/p/4498766.html
         """
         print textwrap.dedent(msg)
 
@@ -602,7 +604,7 @@ class Nav(object):
             for asset in assets:
                 print ' %s' % asset.hostname
             print
-            print "请输入主机名或ansible支持的pattern, 多个主机:分隔, q退出"
+            print "请输入主机名或ansible支持的pattern, 多个主机:分隔, 可以使用正则，注意需要以~开始，如~overlord-1-controller-[0-1], q退出"
             pattern = raw_input("\033[1;32mPattern>:\033[0m ").strip()
             if pattern == 'q':
                 break
@@ -645,7 +647,7 @@ class Nav(object):
         while True:
             try:
                 print "进入批量上传模式"
-                print "请输入主机名或ansible支持的pattern, 多个主机:分隔 q退出"
+                print "请输入主机名或ansible支持的pattern, 多个主机:分隔, 可以使用正则，注意需要以~开始，如~overlord-1-controller-[0-1], q退出"
                 pattern = raw_input("\033[1;32mPattern>:\033[0m ").strip()
                 if pattern == 'q':
                     break
@@ -696,7 +698,7 @@ class Nav(object):
         while True:
             try:
                 print "进入批量下载模式"
-                print "请输入主机名或ansible支持的pattern, 多个主机:分隔,q退出"
+                print "请输入主机名或ansible支持的pattern, 多个主机:分隔, 可以使用正则，注意需要以~开始，如~overlord-1-controller-[0-1],q退出"
                 pattern = raw_input("\033[1;32mPattern>:\033[0m ").strip()
                 if pattern == 'q':
                     break

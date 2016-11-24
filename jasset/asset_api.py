@@ -329,8 +329,13 @@ def get_ansible_asset_info(asset_ip, setup_info):
                     disk_format = float(disk_size[:-2])
                 disk_need[disk_name] = disk_format
     all_ip = setup_info.get("ansible_all_ipv4_addresses")
-    other_ip_list = all_ip.remove(asset_ip) if asset_ip in all_ip else []
-    other_ip = ','.join(other_ip_list) if other_ip_list else ''
+
+    #if asset_ip.encode("utf-8") in all_ip: 
+    #    other_ip_list = all_ip.remove(asset_ip) 
+    #else:
+    #    other_ip_list = []
+
+    other_ip = ','.join(all_ip)#  if other_ip_list else ''
     # hostname = setup_info.get("ansible_hostname")
     # ip = setup_info.get("ansible_default_ipv4").get("address")
     mac = setup_info.get("ansible_default_ipv4").get("macaddress")
@@ -376,7 +381,7 @@ def asset_ansible_update(obj_list, name=''):
         else:
             try:
                 asset_info = get_ansible_asset_info(asset.ip, setup_info)
-                print asset_info
+                logger.debug("asset_info: %s" % asset_info)
                 other_ip, mac, cpu, memory, disk, sn, system_type, system_version, brand, system_arch = asset_info
                 asset_dic = {"other_ip": other_ip,
                              "mac": mac,

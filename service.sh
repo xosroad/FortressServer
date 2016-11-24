@@ -41,6 +41,7 @@ start() {
         else
             daemon python $jumpserver_dir/manage.py crontab add &>> /var/log/jumpserver.log 2>&1
             daemon python $jumpserver_dir/run_server.py &> /dev/null 2>&1 &
+            #daemon python $jumpserver_dir/manage.py runserver 0.0.0.0:8083 &> /dev/null 2>&1 &
             sleep 1
             echo -n "$jump_start"
             ps axu | grep 'run_server' | grep -v 'grep' &> /dev/null
